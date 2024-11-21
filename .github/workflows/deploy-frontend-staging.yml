@@ -2,7 +2,7 @@ name: Deploy Frontend Staging
 
 on:
   workflow_run:
-    workflows: ["Build Frontend"]
+    workflows: [Build Frontend]
     types: [completed]
     branches: [staging]
       
