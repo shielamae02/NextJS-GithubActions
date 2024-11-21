@@ -1,13 +1,10 @@
 name: Deploy Frontend Staging
 
 on:
-  push:
-    branches:
-      - staging
   workflow_run:
     workflows: ["Build Frontend"]
-    types:
-      - completed
+    types: [completed]
+    branches: [staging]
       
 jobs: 
   deploy:
