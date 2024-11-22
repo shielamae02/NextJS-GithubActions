@@ -41,15 +41,10 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Debug Output Directory
-        run: |
-          echo "Contents of the build directory:"
-          ls -R out
-
       - name: Upload artifacts
         uses: actions/upload-pages-artifact@v3
-        with:
-          path: out
+        with: 
+          path: './out'
 
       - name: deploy
         id: deployment
