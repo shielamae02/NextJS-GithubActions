@@ -39,7 +39,7 @@ jobs:
           static_site_generator: next
 
       - run: npm install
-      - run: npm run export
+      - run: npm run build
 
       - name: Debug Output Directory
         run: ls -R
