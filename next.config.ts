@@ -1,7 +1,9 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+   output: 'export',
+   basePath: '/NextJS-GithubActions', // Replace <repository-name> with your GitHub repository name
+   assetPrefix: '/NextJS-GithubActions/',
 };
 
 export default nextConfig;
