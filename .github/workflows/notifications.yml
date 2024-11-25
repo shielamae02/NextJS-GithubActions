@@ -38,8 +38,8 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 587
-          username: "no.reply.devservice@gmail.com"
-          password: "zwss paae keci rxts"
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Build Success: ${{ github.repository }}"
           body: "The build and tests were successful on branch ${{ github.ref_name }}."
           to: slepon@fullscale.ph
@@ -52,8 +52,8 @@ jobs:
         with:
           server_address: smtp.gmail.com
           server_port: 587
-          username: "no.reply.devservice@gmail.com"
-          password: "zwss paae keci rxts"
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
           subject: "Build Failure: ${{ github.repository }}"
           body: "The build or tests failed on branch ${{ github.ref_name }}. Check logs for details."
           to: slepon@fullscale.ph
