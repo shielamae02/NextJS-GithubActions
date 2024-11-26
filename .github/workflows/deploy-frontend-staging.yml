@@ -5,6 +5,7 @@ on:
     workflows: [Build Frontend]
     types: [completed]
     branches: [staging]
+
       
 jobs: 
   deploy:
