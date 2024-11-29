@@ -22,7 +22,17 @@ jobs:
       - run: npm install
       - run: npm run build
 
-      - name: Notify Success
-        if: success()
-        run: echo "Build completed successfully!"
+      # Notify on success
+      - name: Notify on success
+        if: ${{ success() }}
+        run: |
+          curl -X POST https://eoxcm5h1hcp250t.m.pipedream.net \
+          -H "Content-Type: application/json" \
+          -d '{
+                "status": "SUCCESS",
+                "branch": "${{ github.ref_name }}",
+                "commit": "${{ github.sha }}",
+                "repository": "${{ github.repository }}",
+                "run_id": "${{ github.run_id }}"
+              }'
         
