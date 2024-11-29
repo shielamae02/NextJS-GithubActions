@@ -21,4 +21,18 @@ jobs:
 
       - run: npm install
       - run: npm run build
+
+      # Notify on success
+      - name: Notify on success
+        if: ${{ success() }}
+        run: |
+          curl -X POST https://localhost:5001/WeatherForecast \
+          -H "Content-Type: application/json" \
+          -d '{
+                "status": "success",
+                "branch": "${{ github.ref_name }}",
+                "commit": "${{ github.sha }}",
+                "repository": "${{ github.repository }}",
+                "run_id": "${{ github.run_id }}"
+              }'
         
