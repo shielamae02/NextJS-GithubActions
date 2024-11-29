@@ -1,0 +1,75 @@
+name: Pipeline with Notifications
+
+on: 
+  push:
+    branches:
+      - maim
+      - staging
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.x'
+
+      - name: install dependencies
+        run: npm install
+
+      - name: create production build
+        run: npm run build
+
+
+  notify:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      # Notify on success
+      - name: Notify on success
+        if: ${{ success() }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Build Success: ${{ github.repository }}"
+          body: "The build and tests were successful on branch ${{ github.ref_name }}."
+          to: slepon@fullscale.ph
+          from: no.reply.devservice@gmail.com
+
+      # Notify on failure
+      - name: Notify on failure
+        if: ${{ failure() }}
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp.gmail.com
+          server_port: 587
+          username: ${{ secrets.EMAIL_USERNAME }}
+          password: ${{ secrets.EMAIL_PASSWORD }}
+          subject: "Build Failure: ${{ github.repository }}"
+          body: "The build or tests failed on branch ${{ github.ref_name }}. Check logs for details."
+          to: slepon@fullscale.ph
+          from: no.reply.devservice@gmail.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      
