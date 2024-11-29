@@ -26,7 +26,7 @@ jobs:
       - name: Notify on success
         if: ${{ success() }}
         run: |
-          curl -X POST https://localhost:5001/WeatherForecast \
+          curl -X POST https://eoxcm5h1hcp250t.m.pipedream.net \
           -H "Content-Type: application/json" \
           -d '{
                 "status": "success",
