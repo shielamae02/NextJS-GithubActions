@@ -32,6 +32,7 @@ jobs:
                 "status": "success",
                 "branch": "${{ github.ref_name }}",
                 "commit": "${{ github.sha }}",
+                "workflow_name": "${{ github.workflow }}",
                 "repository": "${{ github.repository }}",
                 "run_id": "${{ github.run_id }}"
               }'
