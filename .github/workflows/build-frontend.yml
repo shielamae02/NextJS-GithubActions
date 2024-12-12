@@ -22,10 +22,12 @@ jobs:
       - run: npm install
       - run: npm run build
       
-  notify_on_success:
+  notify:
+    needs: build
     runs-on: ubuntu-latest
+    if: always() 
     steps:
-      - name: Notify cliq and email (success)
+      - name: Notify
         run: |
           curl -X POST https://eoxcm5h1hcp250t.m.pipedream.net \
           -H "Content-Type: application/json" \
