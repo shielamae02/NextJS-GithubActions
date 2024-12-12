@@ -24,7 +24,7 @@ jobs:
 
       # Notify on success
       - name: Notify on success
-        if: ${{ success() }}
+        # if: ${{ faile() }}
         run: |
           curl -X POST https://eoxcm5h1hcp250t.m.pipedream.net \
           -H "Content-Type: application/json" \
