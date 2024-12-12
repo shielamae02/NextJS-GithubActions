@@ -32,7 +32,7 @@ jobs:
           curl -X POST https://eoxcm5h1hcp250t.m.pipedream.net \
           -H "Content-Type: application/json" \
           -d '{
-                "status": "${{ job.status }}",
+                "status": "${{ needs.build.result }}",
                 "branch": "${{ github.ref_name }}",
                 "commit": "${{ github.sha }}",
                 "workflow_name": "${{ github.workflow }}",
